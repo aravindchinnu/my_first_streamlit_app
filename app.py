@@ -80,7 +80,7 @@ st.markdown(
 "Pick a random visual, make two visual changes to it, document those changes, and plot the visual.  \n"
 "You may need to pip install in our terminal for example pip install vega_datasets "
 )
-
+"""
 source = data.stocks()
 
 area_chart = alt.Chart(source).transform_filter(
@@ -124,6 +124,19 @@ area_chart = alt.Chart(source,title = "Area Chart With Gradient").transform_filt
 )
 
 st.altair_chart(area_chart, use_container_width=True)
+"""
+
+#source = data.movies.url
+#source = pd.read_json('Assignment/imdb.json')
+source = pd.read_json('imdb.json')
+st.write(source)
+
+hist = alt.Chart(source).mark_bar().encode(
+    alt.X("IMDB_Rating:Q", bin=True),
+    y='count()',
+)
+
+st.altair_chart(hist, use_container_width=True)
 
 st.markdown("""
 The 2 changes I made were:
